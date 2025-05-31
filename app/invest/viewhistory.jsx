@@ -3,8 +3,10 @@ import { View, Text, Button,StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 import ScrollableContainer from '../../component/scrollableitems'
 import BoxContainer from '../../component/boxcontainer'
+import SimarCard from '../../component/purchasesimmer'
 import {useState,useContext,useEffect} from 'react';
 import Fetchapimethod from '../../configration/fetchapimethod'
+
 const  Viewhistory = ()=> {
   const router = useRouter();
   const [perchaseloading,setperchaseloading] = useState(false)
@@ -17,8 +19,7 @@ const  Viewhistory = ()=> {
     const reversdata = data.reverse(-1)
     setperchasedata(reversdata)
     } catch (e) {
-      setperchaseloading(false)
-      alert(e.message)
+    setperchaseloading(false) 
     }
     
   }
@@ -26,11 +27,15 @@ const  Viewhistory = ()=> {
     perchasehistoryfetch()
   },[])
   return (
-    <ScrollableContainer refreshhandler={perchasehistoryfetch} style={{alignItems:'center'}}>
+    <ScrollableContainer refreshhandler={perchasehistoryfetch} style={{alignItems:'center',gap:3}}>
       <Text style={{padding:12,textTransform:'uppercase',fontWeight:'bold',letterSpacing:1,backgroundColor:'#ccc',marginBottom:8}}>All Purchase Product Records</Text>
       {
         perchaseloading ? 
-        <Text>Loading....</Text>
+        <>
+        <SimarCard />
+        <SimarCard />
+        <SimarCard />
+        </>
         :
         perchasedata.length == 0 ?
         <Text>No Record Found</Text>

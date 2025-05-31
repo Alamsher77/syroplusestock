@@ -1,6 +1,6 @@
 
 const Currancy = (ruppes)=>{
-  return `₹ ${ruppes}.00`
+  return `₹ ${Math.floor(ruppes)}.00`
 } 
 
 export default Currancy

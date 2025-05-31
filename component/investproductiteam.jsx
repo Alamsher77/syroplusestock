@@ -2,41 +2,41 @@ import { View, Text, Button, ScrollView, StyleSheet, TouchableOpacity } from 're
 import BoxContainer from './boxcontainer'
 import { ProgressBar } from 'react-native-paper';
 import { useRouter } from 'expo-router';
-const Investproductiteam = ({item})=>{
+const Investproductiteam = ({item,sample})=>{
   const router = useRouter()
- const randomNumber = Math.floor(Math.random() * (100 - 10 + 1)) + 10;
+ const randomNumber = Math.floor(Math.random() * (100 - 10 + 1)) + 10; 
   return (
     <BoxContainer >
    <TouchableOpacity onPress={()=>router.push(`/product/${item?._id}`)}>
-    <Text style={styles.title}>{item?.categary}: <Text style={styles.agent}>{item?.name}</Text></Text>
+    <Text style={[styles.title,{fontSize:sample ? 12 : 16 }]}>{item?.categary}: <Text style={styles.agent}>{item?.name}</Text></Text>
       
-      <View style={{flexDirection:"row",gap:8 }}>
+      <View style={{flexDirection:"row",gap: sample ? 4 : 8}}>
       {/* Yellow Placeholder Box instead of image */}
-      <View style={styles.placeholderBox}>
-        <Text style={styles.placeholderText}>{item?.name}</Text>
+      <View style={[styles.placeholderBox,{width: sample ? 50:80,height: sample ? 50 :80,}]}>
+        <Text style={[styles.placeholderText,{fontSize:sample ? 18 : 24}]}>{item?.name}</Text>
       </View>
  
       {/* Info Section */}
       <View>
-      <View style={styles.infoRow}>
-        <Text style={styles.label}>Product price</Text>
-        <Text style={styles.value}>{item?.price} Rs</Text>
+      <View style={[styles.infoRow,{marginBottom:sample ? 1 : 6}]}>
+        <Text style={[styles.label,{fontSize: sample ? 8 : 14}]}>Product price</Text>
+        <Text style={[styles.value,{fontSize: sample ? 8 : 14}]}>{item?.price} Rs</Text>
       </View>
-      <View style={styles.infoRow}>
-        <Text style={styles.label}>Daily income</Text>
-        <Text style={styles.value}>{item?.dailyincome} Rs</Text>
+      <View style={[styles.infoRow,{marginBottom:sample ? 1 : 6}]}>
+        <Text style={[styles.label,{fontSize: sample ? 8 : 14}]}>Daily income</Text>
+        <Text style={[styles.value,{fontSize: sample ? 8 : 14}]}>{item?.dailyincome} Rs</Text>
       </View>
-      <View style={styles.infoRow}>
-        <Text style={styles.label}>Income period</Text>
-        <Text style={styles.value}>{item?.incomeperiod} Day</Text>
+      <View style={[styles.infoRow,{marginBottom:sample ? 1 : 6}]}>
+        <Text style={[styles.label,{fontSize: sample ? 8 : 14}]}>Income period</Text>
+        <Text style={[styles.value,{fontSize: sample ? 8 : 14}]}>{item?.incomeperiod} Day</Text>
       </View>
       </View>
       {/* Progress Bar */}
     
       </View>
-        <View style={styles.progressContainer}>
-        <ProgressBar progress={randomNumber / 100} color="#4CAF50" style={styles.progressBar} />
-        <Text style={styles.progressText}>{randomNumber}%</Text>
+        <View style={{marginTop: sample ? 1 : 6,position:'relative'}}>
+        <ProgressBar progress={randomNumber / 100} color="#4CAF50" style={{height: sample ? 2 : 6 ,borderRadius: 4}} />
+        <Text style={[styles.progressText,{fontSize: sample ? 6 : 12 ,position: sample ? 'absolute' :'relative',top: sample ? -15 : 0}]}>{randomNumber}%</Text>
       </View>
      </TouchableOpacity>
     </BoxContainer>
@@ -61,8 +61,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 12,
   },
-  placeholderText: {
-    fontSize: 24,
+  placeholderText: { 
     fontWeight: 'bold',
     color: '#fff',
   },
@@ -80,13 +79,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     color: '#000',
-  },
-  progressContainer: {
-    marginTop: 6,
-  },
-  progressBar: {
-    height: 8,
-    borderRadius: 4,
   },
   progressText: {
     textAlign: 'right',

@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import {useCallback,useState,useEffect,useContext} from 'react'
 //import { StatusBar } from 'expo-status-bar';
 import { AuthContext } from '../context/AuthContext';
-const ScrollableContainer = ({children,style,refreshhandler})=>{
+const ScrollableContainer = ({children,style,refreshhandler,})=>{
   const [refreshing,setRefreshing] = useState(false)
    const {laodInvestProduct,loadUser,loadAllTransaction,loadAllTransactionProduct} = useContext(AuthContext);
   const onRefresh = useCallback(()=>{
@@ -26,7 +26,7 @@ const ScrollableContainer = ({children,style,refreshhandler})=>{
       refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
         }
-      contentContainerStyle={[styles.scrollContent,style]}
+      contentContainerStyle={[styles.scrollContent,style,]}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}>
    

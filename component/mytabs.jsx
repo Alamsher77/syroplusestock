@@ -99,7 +99,8 @@ const styles = StyleSheet.create({
     alignSelf:"center",  
     bottom:25,
     borderRadius:8,    
-    paddingVertical:8
+    paddingVertical:8,
+    elevation:5,
   },
   tabBarIteam:{ 
     flex:1,  

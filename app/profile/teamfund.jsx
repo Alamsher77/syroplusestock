@@ -6,30 +6,33 @@ import ScrollableContainer from '../../component/scrollableitems'
 import Colors from '../../Colors/color'
 import { AuthContext } from '../../context/AuthContext';
 import BoxContainer from '../../component/boxcontainer'
+import TeamfundItems from '../../component/teamfund'
+import Simmertransaction from '../../component/simmertransaction'
 
 
 const Teamfund = ()=> {
   const {alltransactionloading,alltransactiondata,alltransactiondataProduct} = useContext(AuthContext);
+  
   const Product = () => {
   
   const productFilter = alltransactiondata
 
   return(
- <ScrollableContainer style={{gap:8}}>
+ <ScrollableContainer  style={{gap:8}}>
     {
       alltransactionloading ?
-      <Text>Loading....</Text>
+      <>
+     <Simmertransaction />
+     <Simmertransaction />
+     <Simmertransaction />
+     </>
       :
       productFilter.length === 0 ?
       <Text>No records</Text>
       :
       productFilter?.map((item,index)=>{
         return(
-        <BoxContainer key={index} style={{gap:8}}>
-        <Text >{item?.transaction_amount}</Text>
-      <Text style={styles.date}>{new Date(item?.createdAt).toLocaleDateString()}</Text>
-      <Text style={styles.date}>{new Date(item?.createdAt).toLocaleTimeString()}</Text>
-        </BoxContainer>
+        <TeamfundItems  key={index} item={item} />
         )
       })
     }
@@ -40,19 +43,21 @@ const Teamfund = ()=> {
    const productFilter = alltransactiondataProduct
 
   return(
- <ScrollableContainer>
+ <ScrollableContainer style={{gap:8}}>
     {
       alltransactionloading ?
-      <Text>Loading....</Text>
+      <>
+     <Simmertransaction />
+     <Simmertransaction />
+     <Simmertransaction />
+     </>
       :
       productFilter.length === 0 ?
       <Text>No records</Text>
       :
       productFilter?.map((item,index)=>{
         return(
-        <BoxContainer key={index}>
-        <Text >{item?.transaction_amount}</Text>
-        </BoxContainer>
+       <TeamfundItems productname={true} key={index} item={item} />
         )
       })
     }
@@ -64,19 +69,21 @@ const Teamfund = ()=> {
     const productFilter = alltransactiondata.filter((item) => item?.transaction_type == "rewords")
 
   return(
- <ScrollableContainer>
+ <ScrollableContainer style={{gap:8}}>
     {
       alltransactionloading ?
-      <Text>Loading....</Text>
+      <>
+     <Simmertransaction />
+     <Simmertransaction />
+     <Simmertransaction />
+     </>
       :
       productFilter.length === 0 ?
       <Text>No records</Text>
       :
       productFilter?.map((item,index)=>{
         return(
-        <BoxContainer key={index}>
-        <Text >{item?.transaction_amount}</Text>
-        </BoxContainer>
+       <TeamfundItems key={index} item={item} />
         )
       })
     }
@@ -136,6 +143,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
   },
+  
 });
 
 

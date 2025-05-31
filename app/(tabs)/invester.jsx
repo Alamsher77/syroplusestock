@@ -8,6 +8,7 @@ import Colors from '../../Colors/color'
 import Currancy from '../../currency'
 import { Picker } from '@react-native-picker/picker';  
 import Investproductiteam from '../../component/investproductiteam'
+import LoadingSimarCard from '../../component/simmer'
 export default function Invester() {
   const router = useRouter();
     const [selectedValue, setSelectedValue] = useState('name');
@@ -54,7 +55,11 @@ export default function Invester() {
      <View style={{gap:3}}>
      {
       productlodding ?
-      <Text>loading</Text>
+      <>
+      <LoadingSimarCard />
+      <LoadingSimarCard />
+      <LoadingSimarCard />
+      </>
       :
       investProduct?.length == 0 ?
       <Text>no product</Text>

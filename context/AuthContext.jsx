@@ -28,17 +28,17 @@ export const AuthProvider = ({ children }) => {
         setuserfetchlodding(false);
       }
     };
-const [productlodding,setproductlodding] = useState(false) 
+const [productlodding,setproductlodding] = useState(true) 
 const laodInvestProduct = async ()=>{
   try {
         setproductlodding(true)
          const data =  await Fetchapimethod({method:'get',url:'investproduct'})
-         setproductlodding(false)
+        setproductlodding(false)
         setInvestProduct(data)
       } catch (e) {
         console.log('faild to load invest product ')
       } finally {
-        setproductlodding(false);
+      setproductlodding(false);
       }
 }
   // Fetch user data from storage on app start
