@@ -8,6 +8,7 @@ import BoxContainer from '../../component/boxcontainer';
 import ScrollableContainer from '../../component/scrollableitems'
 import Currancy from '../../currency'
 import Fetchapimethod from '../../configration/fetchapimethod'
+import Toast from 'react-native-toast-message'
  
 export default function ProductDetail() {
   const { id } = useLocalSearchParams();
@@ -20,14 +21,14 @@ export default function ProductDetail() {
     const data = await Fetchapimethod({data:product,url:'create_perchase_product',method:'post'})
      setperchaselodding(false)
    if(!data?.success){
-     alert(data?.message)
+     Toast.show({type:'error',text1:data?.message})
      return false
    }
-   alert(data?.message)
+     Toast.show({type:'success',text1:data?.message})
    loadUser()
     } catch (e) {
       setperchaselodding(false)
-      alert(e.message)
+        Toast.show({type:'error',text1:e.message})
     }
    
   }

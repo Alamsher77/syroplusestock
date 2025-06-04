@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+import {router} from 'expo-router'
 import DomainUrl from '../configration/Index'
 import Fetchapimethod from '../configration/fetchapimethod'
 export const AuthContext = createContext();
@@ -18,14 +19,18 @@ export const AuthProvider = ({ children }) => {
             Authorization: `Bearer ${JSON.parse(token)}`
           }
         })
+        setuserfetchlodding(false)
         const data = response.data 
         if (data?.success) {
           setUser(data?.getuserdata);
         }
       } catch (e) {
-        console.log('Failed to load user:', e);
-      } finally {
-        setuserfetchlodding(false);
+        setuserfetchlodding(false)
+        if(e.message == 'Network Error'){
+         router.replace('network_error')
+        }else if(e.response.status == 500){
+          alert('Server Error or Login tocken expire')
+        } 
       }
     };
 const [productlodding,setproductlodding] = useState(true) 
@@ -72,6 +77,7 @@ const loadAllTransactionProduct = async ()=>{
     laodInvestProduct();
     loadAllTransaction()
     loadAllTransactionProduct()
+    fetchBankDetails()
   }, []);
 
   const login = async (userInfo) => {
@@ -83,9 +89,24 @@ const loadAllTransactionProduct = async ()=>{
     setUser(null);
     await AsyncStorage.removeItem('authToken');
   };
+  
+  
+ const [allbankdetails,setallbankdetails] = useState([])
+ const [allbankdetailsloadin,setallbankdetailsloading] = useState(false)
+ const fetchBankDetails = async ()=>{
+   try {
+      setallbankdetailsloading(true)
+   const data = await Fetchapimethod({url:'fetch_bank_account_details',method:'get'})
+   setallbankdetailsloading(false)
+   setallbankdetails(data) 
+   } catch (e) {
+    console.log(e.message)
+   }
+   
+ }
 
 const contextdata = {
-  user, login, logout, userfetchlodding,loadUser,investProduct,setInvestProduct,productlodding,laodInvestProduct,alltransactionloading,loadAllTransaction,alltransactiondata,alltransactiondataProduct,loadAllTransactionProduct
+  user, login, logout, userfetchlodding,loadUser,investProduct,setInvestProduct,productlodding,laodInvestProduct,alltransactionloading,loadAllTransaction,alltransactiondata,alltransactiondataProduct,loadAllTransactionProduct,fetchBankDetails,allbankdetails,allbankdetailsloadin
 }
   return (
     <AuthContext.Provider value={contextdata}>

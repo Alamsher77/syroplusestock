@@ -5,7 +5,7 @@ import {useCallback,useState,useEffect,useContext} from 'react'
 import { AuthContext } from '../context/AuthContext';
 const ScrollableContainer = ({children,style,refreshhandler,})=>{
   const [refreshing,setRefreshing] = useState(false)
-   const {laodInvestProduct,loadUser,loadAllTransaction,loadAllTransactionProduct} = useContext(AuthContext);
+   const {laodInvestProduct,loadUser,loadAllTransaction,loadAllTransactionProduct,fetchBankDetails} = useContext(AuthContext);
   const onRefresh = useCallback(()=>{
      setRefreshing(true)
      setTimeout(()=>{
@@ -14,6 +14,7 @@ const ScrollableContainer = ({children,style,refreshhandler,})=>{
       loadUser()
       loadAllTransaction() 
       loadAllTransactionProduct()
+      fetchBankDetails()
       if(refreshhandler){
         refreshhandler()
       }

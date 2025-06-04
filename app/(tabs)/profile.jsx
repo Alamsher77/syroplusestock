@@ -8,6 +8,7 @@ import Colors from '../../Colors/color'
 import Currancy from '../../currency'
 import { Ionicons, FontAwesome, MaterialIcons, Entypo, FontAwesome5,AntDesign } from "@expo/vector-icons";
 import DomainUrl from '../../configration/Index'
+import Toast from 'react-native-toast-message'
 export default function Profile() {
   const { login,user,logout } = useContext(AuthContext);
   
@@ -16,7 +17,7 @@ export default function Profile() {
     try {
     logout()
     router.replace("/")
-    Alert.alert("success","Logout successfully")
+    Toast.show({type:"success",text1:"Logout successfully"})
     } catch (e) {
       e.message
     }
@@ -81,15 +82,15 @@ export default function Profile() {
     // optionList data
      <View style={styles.optionList}>
         <OptionItem icon="users" onPress={()=>router.navigate('/profile/teamfund')} text="Team fund" />
-        <OptionItem icon="file-invoice-dollar" text="Funding details" />
-        <OptionItem icon="money-check-alt" text="Withdrawal Record" />
-        <OptionItem icon="lock" text="Login Password" />
-        <OptionItem icon="unlock-alt" text="Withdrawal Password" />
-        <OptionItem icon="university" text="My bank account" />
+        <OptionItem onPress={()=> router.navigate('profile/fundingdetails')} icon="file-invoice-dollar" text="Funding details" />
+        <OptionItem onPress={()=> router.navigate('profile/withdrawalrecord')} icon="money-check-alt" text="Withdrawal Record" />
+        <OptionItem onPress={()=> router.navigate('profile/loginpassword')} icon="lock" text="Login Password" />
+        <OptionItem onPress={()=>router.navigate('profile/withdrawalpassword')} icon="unlock-alt" text="Withdrawal Password" />
+        <OptionItem onPress={()=>router.navigate('profile/mybankaccount')} icon="university" text="My bank account" />
       </View> 
      }
          <View style={styles.optionList}>
-        <OptionItem icon="network-wired" text="Customer Service" />
+        <OptionItem onPress={()=> router.navigate('profile/customerservice')} icon="network-wired" text="Customer Service" />
         <OptionItem onPress={handler} icon="sign-out-alt" text="Sign Out" />
       </View>
       </BoxContainer>

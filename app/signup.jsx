@@ -17,6 +17,7 @@ import { useRouter } from 'expo-router';
 import Colors from '../Colors/color'
 import {Entypo} from '@expo/vector-icons/';
 import Fetchapimethod from '../configration/fetchapimethod'
+import Toast from 'react-native-toast-message'
 export default function Signup() {
   const [showpassword, setshowpassword] = useState(true);
   const [userData,setUserData] = useState({
@@ -36,13 +37,13 @@ export default function Signup() {
     const data = await Fetchapimethod({route:'authe/alluser',data:userData,method:'post'})
     setsignuploading(false)
      if(!data?.success){
-       Alert.alert('Error',data.message)
+       Toast.show({type:'error',text1:data.message})
        return false
      }
-     Alert.alert('success',data?.message)
+  Toast.show({type:'success',text1:data.message})
     } catch (e) {
       setsignuploading(false)
-      Alert.alert('error',e.message)
+    Toast.show({type:'error',text1:e.message})
     }
    
   }

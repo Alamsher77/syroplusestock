@@ -6,19 +6,16 @@ import ScrollableContainer from '../../component/scrollableitems'
 import BoxContainer from '../../component/boxcontainer'
 import { AuthContext } from '../../context/AuthContext'; 
 import Currency from '../../currency'
+import axios from 'axios';
 const  RechargeToWallete = ()=> {
   
   const {user} = useContext(AuthContext);
   
-  const [amount,setamount] = useState(0)
-  const rgex =/^\d*$/.test(amount)  
-
-  const rechargehandler = ()=>{ 
-      if(!rgex){
-       Alert.alert('Faild validation','please enter the only Number')
-        return false
-        }
-    if(amount < 5){
+  const [amount,setamount] = useState(0) 
+  const validatefornumberoramount = !isNaN(amount) && Number(amount) >= 1;
+  const rechargehandler = async()=>{
+   
+    if(!validatefornumberoramount){
       Alert.alert("amount","add minimum 100 rupeese")
       return false
     }
@@ -34,8 +31,8 @@ const  RechargeToWallete = ()=> {
       </View>
       
       <BoxContainer >
-       <TextInput value={amount} onChangeText={setamount} style={{borderWidth:0.5,borderRadius:5,borderColor: rgex
-        ? null : 'red',color:rgex ? null : 'red' }} keyboardType="numeric" type="text" placeholder="Rs 0.00"  placeholderTextColor={rgex ? null : 'red'}  />
+       <TextInput value={amount} onChangeText={setamount} style={{borderWidth:0.5,borderRadius:5,borderColor: validatefornumberoramount
+        ? null : 'red',color:validatefornumberoramount ? null : 'red' }} keyboardType="numeric" type="text" placeholder="Rs 0.00"  placeholderTextColor={validatefornumberoramount ? null : 'red'}  />
        <View style={{flexDirection:'row',justifyContent:'space-between',marginVertical:12}}>
         <Text style={{color:'gray'}}>Your account also has</Text>
         <Text style={{color:'#22bB22',fontWeight:'bold'}}>{Currency(user?.wallet)}</Text>
@@ -43,10 +40,11 @@ const  RechargeToWallete = ()=> {
       </BoxContainer>
       
       <BoxContainer>
+        <Text style={{color:'blue'}}>Amount must be recharge graterthan of 100 rupeese</Text>
         <Text style={{color:'red'}}>Note: The amount entered and the payment amount must be consistent</Text>
       </BoxContainer>
       
-      <TouchableOpacity onPress={rechargehandler}  ><Text style={{backgroundColor:'#FBC02D',marginTop:20,paddingVertical:8,color:'white',textAlign:'center',borderRadius:5,fontWeight:'bold'}}>Recharge</Text></TouchableOpacity>
+      <TouchableOpacity disabled={!validatefornumberoramount} onPress={rechargehandler} style={{opacity: validatefornumberoramount ? 1 : 0.3}} ><Text style={{backgroundColor:'#FBC02D',marginTop:20,paddingVertical:8,color:'white',textAlign:'center',borderRadius:5,fontWeight:'bold'}}>Recharge</Text></TouchableOpacity>
     </ScrollableContainer>
   );
 }

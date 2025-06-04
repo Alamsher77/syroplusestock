@@ -20,6 +20,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Entypo} from '@expo/vector-icons/';
 import DomainUrl from '../configration/Index'
+import Toast from 'react-native-toast-message'
 export default function App() { 
   const router = useRouter()
   
@@ -54,15 +55,15 @@ const { login,user,logout,loadUser,userfetchlodding } = useContext(AuthContext);
       const data = response.data
       
       if(!data?.success){
-      alert(data?.message)
+      Toast.show({type:'error',text1:data?.message})
         return false
       }
-    alert(data?.message)  
+    Toast.show({type:'success',text1:data?.message})  
     await AsyncStorage.setItem('authToken', JSON.stringify(data?.token));
     loadUser() 
   } catch (e) {
     setLoading(false)
-    alert(e.message)
+    Toast.show({text1:e.message,type:'error'})
   }
   };
   
