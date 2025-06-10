@@ -85,7 +85,7 @@ const { login,user,logout,loadUser,userfetchlodding } = useContext(AuthContext);
         
           {/* Phone Number Input */}
           <TextInput
-            style={styles.input}
+            style={styles.inputs}
             placeholder="Phone Number"
             keyboardType="phone-pad"
             placeholderTextColor="#ccc"
@@ -95,7 +95,7 @@ const { login,user,logout,loadUser,userfetchlodding } = useContext(AuthContext);
           {/* Password Input */}
           <View style={styles.inputcontainer}>
           <TextInput
-            style={styles.input}
+            style={styles.inputs}
             placeholder="Password"
             secureTextEntry={showpassword}
             onChangeText={setPassword}
@@ -161,9 +161,10 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     alignItems:"center"
   },
-  input: {
+  inputs: {
     width: '100%',
     backgroundColor: '#ffffff',
+    color:"#000",
     borderRadius: 8,
     paddingHorizontal: 15,
     paddingVertical: 12,

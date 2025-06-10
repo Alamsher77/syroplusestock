@@ -45,7 +45,10 @@ export default function ProductDetail() {
   return ( 
     <ScrollableContainer style={{gap:3,position:'relative'}}> 
       <View style={styles.imagecontainer}>
-       <Image style={styles.image} source={{ uri:"https://res.cloudinary.com/dw6kism8o/image/upload/v1747530357/qu6kjsjxvbeyraaffqvj.jpg"}}  resizeMode="contain" />
+         <View style={[styles.placeholderBox,{width:'100%',height:'100%'}]}>
+        <Text style={{fontWeight: 'bold',
+    color: '#fff',fontSize:100}}>{product?.name}</Text>
+      </View>
       </View>
       <BoxContainer style={{flexDirection:'row',flexWrap:'wrap',justifyContent:'space-between',gap:4}}>
         <AmountCard title="Principal" price={Currancy(product?.price)} />
@@ -75,7 +78,7 @@ const AmountCard = ({title,price})=>(
   )
 const styles = StyleSheet.create({
   imagecontainer:{
-   width:300,
+   width:'100%',
    height:250, 
    alignSelf:'center'
   },
@@ -87,5 +90,14 @@ const styles = StyleSheet.create({
   earningValue: {
     fontWeight: 'bold',
     color: '#FBC02D',
-  },  
+  }, 
+   placeholderBox: {
+    backgroundColor: '#FFD700',
+    width: 80,
+    height: 80,
+    borderRadius: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
 });

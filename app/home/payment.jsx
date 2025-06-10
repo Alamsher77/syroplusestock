@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   Alert,
-  ActivityIndicator
+  ActivityIndicator, 
 } from 'react-native';
 import {
   useRouter,
@@ -29,7 +29,7 @@ const  Payment = ()=> {
   const generateUpiUrl = (upiId, name, amount) =>{
   return `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;}
 
-  const upiUrl = generateUpiUrl("easyshop760904.rzp@rxairtel", "Invest flipkar", amount);
+  const upiUrl = generateUpiUrl("Q775648997@ybl", "Invest flipkar", amount);
   const [time,settime] = useState(600)
   useEffect(() => {
     const interval = setInterval(() => {
@@ -48,7 +48,7 @@ const  Payment = ()=> {
       try {
         /* code */
         if(!rgex){
-       Toast.show({text1:"Enter the 12 digist of UTR number",type:'error'})
+      Toast.show({text1:"Enter the 12 digist of UTR number",type:'error'})
         return false
       }
       setpaymentloading(true)
@@ -81,6 +81,22 @@ const  Payment = ()=> {
       </BoxContainer>
     </ScrollableContainer>
   );
+  
+  
+  // return(
+  //   <View style={{flex:1,}}>
+  //   <WebView source={{html:`
+  //   <body onload="document.f1.submit()">
+  //   <form name="f1" method="POST" action="https://allupipay.in/RN/create">
+  //         <input type="hidden" value=${'00c253c8-47ab-45e1-ad96-64fb7ecaee06'}  name="api_token">
+  //         <input  type="hidden" value=${'98345387345'} name="order_id">
+  //         <input  type="hidden" value=${amount} name="amount"> 
+  //         <input  type="Mobile_no" value=${"6203452591"} name="amount"> 
+  //       </form>
+  //   </body>
+  //   `}} />
+  //   </View>
+  //   )
 }
 
 export default Payment

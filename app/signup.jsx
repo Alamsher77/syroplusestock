@@ -62,12 +62,12 @@ export default function Signup() {
             source={require('../assets/images/flipcart.png')} // Replace with your own logo
             style={styles.logo}
           />
+          <TextInput value={userData?.name}  onChangeText={(text)=>setUserData({...userData,name:text})}   style={styles.inputs} placeholder="Name" placeholderTextColor="#ccc" />
 
-          <TextInput value={userData?.name}  onChangeText={(text)=>setUserData({...userData,name:text})}   style={styles.input} placeholder="Name" placeholderTextColor="#ccc" />
           
           <TextInput
           onChangeText={(text)=>setUserData({...userData,phone:text})}
-            style={styles.input}
+            style={styles.inputs}
             value={userData?.phone}
             placeholder="Mobile Number"
             keyboardType="phone-pad"
@@ -75,7 +75,7 @@ export default function Signup() {
           />
           <TextInput
           onChangeText={(text)=>setUserData({...userData,password:text})}
-            style={styles.input}
+            style={styles.inputs}
             value={userData.password}
             placeholder="Password"
             secureTextEntry
@@ -84,7 +84,7 @@ export default function Signup() {
           <View style={styles.inputcontainer}>
           <TextInput
           onChangeText={(text)=>setUserData({...userData,confirmPassword:text})}
-            style={styles.input}
+            style={styles.inputs}
             value={userData?.confirmPassword}
             placeholder="Conform password"
             secureTextEntry={showpassword} 
@@ -95,7 +95,7 @@ export default function Signup() {
           <TextInput
           value={userData?.otp}
           onChangeText={(text)=>setUserData({...userData,otp:text})}
-            style={styles.input}
+            style={styles.inputs}
             placeholder="OTP"
             keyboardType="numeric"
             placeholderTextColor="#ccc"
@@ -103,7 +103,7 @@ export default function Signup() {
           <TextInput
           value={userData?.whoinvitecode}
             onChangeText={(text)=>setUserData({...userData,whoinvitecode:text})}
-            style={styles.input}
+            style={styles.inputs}
             placeholder="Invite Code (optional)"
             placeholderTextColor="#ccc"
           />
@@ -159,8 +159,9 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     alignItems:"center"
   },
-  input: {
-    backgroundColor: '#fff',
+  inputs: {
+    backgroundColor: 'white',
+    color:"#000",
     borderRadius: 8,
     paddingHorizontal: 15,
     paddingVertical: 12,

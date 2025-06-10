@@ -14,7 +14,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   ActivityIndicator,
-  StatusBar
+  StatusBar,
 } from 'react-native';
 
 import {
@@ -22,10 +22,15 @@ import {
   GestureHandlerRootView
 } from 'react-native-gesture-handler';
 const RootLayout = ()=> {
+
   return (
     <GestureHandlerRootView>
     <AuthProvider> 
-     <StatusBar barStyle="dark-content" backgroundColor="red" />
+    
+        <View style={{ height: StatusBar.currentHeight || 44, backgroundColor: '#111' }} />
+  
+  
+     <StatusBar barStyle="light-content" backgroundColor="red" />
     <Stack screenOptions={{headerShown:false}}>
        <Stack.Screen name="index" options={{ title: 'Main' }} />
       <Stack.Screen name="signup" options={{ title: 'Signup' }} />

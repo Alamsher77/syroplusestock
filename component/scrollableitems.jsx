@@ -21,8 +21,7 @@ const ScrollableContainer = ({children,style,refreshhandler,})=>{
      },2000)
    },[])
   return(
-    <SafeAreaView style={{flex: 1,
-    backgroundColor: '#f2f2f2',}}>
+   
       <ScrollView 
       refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
@@ -33,14 +32,14 @@ const ScrollableContainer = ({children,style,refreshhandler,})=>{
    
         {children}
       </ScrollView>
-      </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
  scrollContent: {
     flexGrow: 1,
-    paddingHorizontal: 12,
+   paddingHorizontal: 12,
+   paddingVertical:8,
     paddingBottom: 80,
   }, 
 });

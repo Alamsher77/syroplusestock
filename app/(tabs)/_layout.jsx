@@ -25,16 +25,16 @@ const TabLayout = ()=>{
           }
         }}
        />
-    {  // <Tabs.Screen name="team"
-      // options={{
-      //     title:'Team',
-      //     headerShown:false,
-      //     tabBarIcon:({color,size})=>{
-      //       return <FontAwesome6 name="users-gear" size={16} color={color} />
-      //     }
-      //   }}
-      // />
-    }
+     <Tabs.Screen name="team"
+       options={{
+           title:'Team',
+          headerShown:false,
+          tabBarIcon:({color,size})=>{
+            return <FontAwesome6 name="users-gear" size={16} color={color} />
+          }
+         }}
+       />
+    
         <Tabs.Screen name="profile"
        options={{
           title:'Me',
