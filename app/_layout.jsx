@@ -27,10 +27,10 @@ const RootLayout = ()=> {
     <GestureHandlerRootView>
     <AuthProvider> 
     
-        <View style={{ height: StatusBar.currentHeight || 44, backgroundColor: '#111' }} />
+        <View style={{ height: StatusBar.currentHeight || 44, backgroundColor: '#fff' }} />
   
   
-     <StatusBar barStyle="light-content" backgroundColor="red" />
+     <StatusBar barStyle="dark-content" backgroundColor="red" />
     <Stack screenOptions={{headerShown:false}}>
        <Stack.Screen name="index" options={{ title: 'Main' }} />
       <Stack.Screen name="signup" options={{ title: 'Signup' }} />

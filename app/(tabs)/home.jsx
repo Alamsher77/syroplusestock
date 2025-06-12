@@ -9,6 +9,7 @@ import Investproductiteam from '../../component/investproductiteam'
 import axios from 'axios'
 import LoadingSimarCard from '../../component/simmer'
 import Swipablebanner from '../../component/swipablebanner'
+import Colors from '../../Colors/color'
 export default function Home() {
   const {investProduct,productlodding, login,user,logout } = useContext(AuthContext);
   const router = useRouter();  
@@ -37,8 +38,8 @@ useEffect(()=>{
    <ScrollableContainer style={{gap:6}}> 
       {/* Fast Banner Section */}
       <View style={styles.header}>
-        <View style={{width:40,height:40,padding:2,borderWidth:1,borderColor:'green',borderRadius:50}}><Image style={{width:'100%',height:'100%'}} source={require('../../assets/images/flipcart.png')} /></View>
-        <TouchableOpacity onPress={()=>router.navigate('/profile')} style={{width:35,height:35,padding:2,borderRadius:"50%",justifyContent:'center',alignItems:'center',backgroundColor:'#000'}}>
+        <View style={{width:100,height:50}}><Image resizeMode="contain" style={{width:'100%',height:'100%'}} source={require('../../assets/images/03.jpg')} /></View>
+        <TouchableOpacity onPress={()=>router.navigate('/profile')} style={{width:35,height:35,padding:2,borderRadius:"50%",justifyContent:'center',alignItems:'center',backgroundColor:Colors.mainColor}}>
         {
           user ? <Text style={{color:'white',fontSize:21,fontWeight:'bold'}}>{user.name.charAt(0)}</Text>: <FontAwesome6 name='user-circle' color="white" size={27} />
         }
@@ -56,24 +57,24 @@ useEffect(()=>{
 
       {/* Recharge & Withdrawal Section */}
       <BoxContainer style={styles.rechargeWithdrawSection}>
-        <TouchableOpacity onPress={()=>router.navigate('home/recharge')} style={[styles.actionbtn,{ backgroundColor: '#f44336', width: '48%',}]}>
+        <TouchableOpacity onPress={()=>router.navigate('home/recharge')} style={[styles.actionbtn,{ backgroundColor: Colors.mainColor, width: '48%',}]}>
           <Fontisto name="wallet" size={18} color="white" />
-          <Text style={styles.buttonText}>Recharge</Text>
+          <Text style={styles.buttonText}>Diposit</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={()=> router.navigate('home/withdrawal')} style={[styles.actionbtn,{ backgroundColor: '#4CAF50', width: '48%',}]}>
+        <TouchableOpacity onPress={()=> router.navigate('home/withdrawal')} style={[styles.actionbtn,{ backgroundColor:Colors.mainColor, width: '48%',}]}>
          <MaterialCommunityIcons name="bank" size={24} color="white" />
          <Text style={styles.buttonText}>Withdraw</Text>
         </TouchableOpacity>
       </BoxContainer>
 
       {/* Service Section */}
-      <BoxContainer style={{gap:5}} >
+      <View style={{gap:5}} >
         <BoxContainer style={styles.header} >
-          <Text  style={{color:'gray'}} >Investment Product</Text> 
+          <Text  style={{color:Colors.mainColor,fontWeight:"bold"}} >Investment Product</Text> 
         <TouchableOpacity onPress={()=>router.navigate('/invester')} style={{flexDirection:'row'}}>
-        <Text style={{color:'gray'}}>See more</Text>
-        <MaterialIcons name="navigate-next" size={24} color="black" />
+        <Text style={{color:Colors.mainColor,fontWeight:"bold"}}>See more</Text>
+        <MaterialIcons name="navigate-next" size={24} color={Colors.mainColor} />
         </TouchableOpacity>
         </BoxContainer> 
         {
@@ -93,7 +94,7 @@ useEffect(()=>{
            
         }
           
-      </BoxContainer> 
+      </View> 
     </ScrollableContainer>
   );
 }
@@ -114,7 +115,8 @@ const styles = StyleSheet.create({
   bannerText: {
     fontSize: 16,
     fontWeight: 'bold',
-    paddingVertical:8
+    paddingVertical:8,
+    color:Colors.mainColor
   },
   rechargeWithdrawSection: {
     flexDirection: 'row',

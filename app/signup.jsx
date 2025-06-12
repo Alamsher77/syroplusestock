@@ -59,10 +59,10 @@ export default function Signup() {
           showsVerticalScrollIndicator={false}
         >
             <Image
-            source={require('../assets/images/flipcart.png')} // Replace with your own logo
+            source={require('../assets/images/03.jpg')} // Replace with your own logo
             style={styles.logo}
           />
-          <TextInput value={userData?.name}  onChangeText={(text)=>setUserData({...userData,name:text})}   style={styles.inputs} placeholder="Name" placeholderTextColor="#ccc" />
+          <TextInput value={userData?.name}  onChangeText={(text)=>setUserData({...userData,name:text})}   style={styles.inputs} placeholder="Name" placeholderTextColor="#fff" selectionColor="#555" />
 
           
           <TextInput
@@ -71,7 +71,8 @@ export default function Signup() {
             value={userData?.phone}
             placeholder="Mobile Number"
             keyboardType="phone-pad"
-            placeholderTextColor="#ccc"
+            placeholderTextColor="#fff"
+            selectionColor="#555"
           />
           <TextInput
           onChangeText={(text)=>setUserData({...userData,password:text})}
@@ -79,7 +80,8 @@ export default function Signup() {
             value={userData.password}
             placeholder="Password"
             secureTextEntry
-            placeholderTextColor="#ccc"
+            placeholderTextColor="#fff"
+            selectionColor="#555"
           />
           <View style={styles.inputcontainer}>
           <TextInput
@@ -88,9 +90,10 @@ export default function Signup() {
             value={userData?.confirmPassword}
             placeholder="Conform password"
             secureTextEntry={showpassword} 
-            placeholderTextColor="#ccc"
+            placeholderTextColor="#fff"
+            selectionColor="#555"
           />
-          <TouchableOpacity onPress={()=>setshowpassword(!showpassword)} style={styles.eyecontainer}><Entypo name={showpassword ? "eye-with-line":"eye"} size={24} color="black" /></TouchableOpacity>
+          <TouchableOpacity onPress={()=>setshowpassword(!showpassword)} style={styles.eyecontainer}><Entypo name={showpassword ? "eye-with-line":"eye"} size={24} color="#fff" /></TouchableOpacity>
           </View>
           <TextInput
           value={userData?.otp}
@@ -98,14 +101,16 @@ export default function Signup() {
             style={styles.inputs}
             placeholder="OTP"
             keyboardType="numeric"
-            placeholderTextColor="#ccc"
+            placeholderTextColor="#fff"
+            selectionColor="#555"
           />
           <TextInput
           value={userData?.whoinvitecode}
             onChangeText={(text)=>setUserData({...userData,whoinvitecode:text})}
             style={styles.inputs}
             placeholder="Invite Code (optional)"
-            placeholderTextColor="#ccc"
+            placeholderTextColor="#fff"
+            selectionColor="#555"
           />
 
           <TouchableOpacity disabled={signuploading} onPress={signuphandler} style={styles.createButton}>
@@ -132,11 +137,12 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   logo: {
-    width: 80,
-    height: 80,
+    width: 150,
+    height: 150,
     marginBottom: 20,
     alignSelf:'center',
     borderRadius:20,
+    resizeMode:'contain'
   },
   title: {
     fontSize: 28,
@@ -160,16 +166,17 @@ const styles = StyleSheet.create({
     alignItems:"center"
   },
   inputs: {
-    backgroundColor: 'white',
-    color:"#000",
+    backgroundColor: Colors.mainColor,
+    color:"#fff",
     borderRadius: 8,
     paddingHorizontal: 15,
     paddingVertical: 12,
     fontSize: 16,
     marginBottom: 15,
+    selectionColor:"#fff"
   },
   createButton: {
-    backgroundColor: '#0041C2',
+    backgroundColor: Colors.mainColor,
     paddingVertical: 14,
     borderRadius: 8,
     alignItems: 'center',
@@ -181,10 +188,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   link: {
-    color: '#0041C2',
+    color: Colors.mainColor,
     fontSize: 14,
     textAlign: 'center',
-    marginTop: 20,
+    marginTop: 20, 
     textDecorationLine: 'underline',
   },
 });

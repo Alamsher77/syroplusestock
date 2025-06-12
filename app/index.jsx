@@ -33,9 +33,9 @@ const { login,user,logout,loadUser,userfetchlodding } = useContext(AuthContext);
  
   if(userfetchlodding){
     return(
-    <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
+    <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:Colors.mainColor}}>
     
-    <ActivityIndicator size="large" color="#6a0dad" />
+    <ActivityIndicator size="large" color="#fff" />
     </View>
     ) 
   }
@@ -78,7 +78,7 @@ const { login,user,logout,loadUser,userfetchlodding } = useContext(AuthContext);
         <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}  contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
           {/* Logo */}
           <Image
-            source={require('../assets/images/flipcart.png')} // Replace with your own logo
+            source={require('../assets/images/03.jpg')} // Replace with your own logo
             style={styles.logo}
           />
 
@@ -88,8 +88,9 @@ const { login,user,logout,loadUser,userfetchlodding } = useContext(AuthContext);
             style={styles.inputs}
             placeholder="Phone Number"
             keyboardType="phone-pad"
-            placeholderTextColor="#ccc"
+            placeholderTextColor="#fff"
             onChangeText={setPhone}
+            selectionColor="#555"
           />
 
           {/* Password Input */}
@@ -99,9 +100,10 @@ const { login,user,logout,loadUser,userfetchlodding } = useContext(AuthContext);
             placeholder="Password"
             secureTextEntry={showpassword}
             onChangeText={setPassword}
-            placeholderTextColor="#ccc"
+            placeholderTextColor="#fff"
+            selectionColor="#555"
           />
-          <TouchableOpacity onPress={()=>setshowpassword(!showpassword)} style={styles.eyecontainer}><Entypo name={showpassword ? "eye-with-line":"eye"} size={24} color="black" /></TouchableOpacity>
+          <TouchableOpacity onPress={()=>setshowpassword(!showpassword)} style={styles.eyecontainer}><Entypo name={showpassword ? "eye-with-line":"eye"} size={24} color="#fff" /></TouchableOpacity>
           </View>
           {/* Login Button */}
           <TouchableOpacity disabled={loading} onPress={handleLogin} style={styles.loginButton}>
@@ -127,7 +129,7 @@ const { login,user,logout,loadUser,userfetchlodding } = useContext(AuthContext);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.flipkart, // Purple background
+    backgroundColor: '#fff', // Purple background
   },
   scrollContent: {
     flexGrow: 1,
@@ -136,9 +138,10 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   logo: {
-    width: 80,
-    height: 80,
+    width: 150, 
+    height:150,
     marginBottom: 20,
+    resizeMode:'contain',
     borderRadius:20,
   },
   title: {
@@ -163,17 +166,18 @@ const styles = StyleSheet.create({
   },
   inputs: {
     width: '100%',
-    backgroundColor: '#ffffff',
-    color:"#000",
+    backgroundColor: Colors.mainColor,
+    color:"#fff",
     borderRadius: 8,
     paddingHorizontal: 15,
     paddingVertical: 12,
     fontSize: 16,
     marginBottom: 15,
+    selectionColor:"#fff"
   },
   loginButton: {
     width: '100%',
-    backgroundColor: "#0041C2",
+    backgroundColor: Colors.mainColor,
     paddingVertical: 12,
     borderRadius: 8,
     alignItems: 'center',
@@ -189,7 +193,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   link: {
-    color: ' #0041C2',
+    color: Colors.mainColor,
     fontSize: 14,
     marginVertical: 5,
     textDecorationLine: 'underline',

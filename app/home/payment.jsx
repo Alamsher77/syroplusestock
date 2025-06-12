@@ -25,78 +25,81 @@ import {WebView} from 'react-native-webview'
 import Toast from 'react-native-toast-message'
 const  Payment = ()=> {
   const router = useRouter();
-    const {amount} = useLocalSearchParams(); 
-  const generateUpiUrl = (upiId, name, amount) =>{
-  return `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;}
-
-  const upiUrl = generateUpiUrl("Q775648997@ybl", "Invest flipkar", amount);
-  const [time,settime] = useState(600)
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (time >  0 ) {
-        settime(prev => prev - 1);
-      }
-
-      }, 1000); // runs every 1 second
-      // Cleanup
-      return () => clearInterval(interval);
-    },[time]);
-    const [paymentloading,setpaymentloading] = useState(false)
-    const [utrnumber,setutrnumber] = useState(null)
-    const rgex =/^\d{12}$/.test(utrnumber)
-    const paymentHandler = async()=>{
-      try {
-        /* code */
-        if(!rgex){
-      Toast.show({text1:"Enter the 12 digist of UTR number",type:'error'})
-        return false
-      }
-      setpaymentloading(true)
-        const data = await Fetchapimethod({route:'admin-invest',method:'post',url:'createrechargetransation',data:{utrnumber,recharge_amount:amount}})
-        setpaymentloading(false)
-        if(!data?.success){
-          Toast.show({text1:data?.message,type:'error'})
-          return false
-        }
-        Toast.show({text1:data?.message,type:'success'})
-        router.navigate('/')
-      } catch (e) {
-        setpaymentloading(false)
-        Toast.show({text1:e?.message,type:'error'})
-      }
-
-
-
+    const {amount,key,currency,id} = useLocalSearchParams();
+    console.log(id)
+ const onMessage =  async(event)=>{
+   
+     try {
+          const datares = JSON.parse(event.nativeEvent.data);
+     if (datares.event === "success") {
+      const alldataforres = datares.response
+    const data = await Fetchapimethod({method:'post',data:{...alldataforres,amount},url:'verify_razorpay_payment'})
+    
+    if(!data?.success){
+      Toast.show({type:'error',text1:data?.message})
+      return false
     }
-  return (
-    <ScrollableContainer style={{gap:4,justifyContent:"center"}}>
-      <Text style={{alignSelf:'center',fontWeight:'bold',letterSpacing:2,fontSize:16}}>Payment Mode</Text>
-      <BoxContainer style={{justifyContent:'center',paddingBottom:40,alignItems:'center',gap:12}}>
-      <Text style={{color:'gray'}}>Payble Amount :  <Text style={{fontWeight:'bold',color:'#22bB22'}}>{Currancy(amount)}</Text></Text>
-      <Text style={{width:240,color:'red',textAlign:'center'}}>Scan the Qr code and payment After the payment please Enter the UTR number to conform your payment !</Text>
-      <Text>Payment expire : {time}s</Text>
-      <QRCode value={upiUrl} size={200} />
-      <TextInput style={{borderWidth:0.5,width:200,paddingHorizontal:23,borderRadius:5}} type="text" placeholder="UTR : 123456789012" onChangeText={setutrnumber} keyboardType="numeric"  />
-        <TouchableOpacity disabled={paymentloading} onPress={paymentHandler} style={{backgroundColor:'#22bB22',paddingHorizontal:40,paddingVertical:4,borderRadius:5}}><Text style={{color:'white'}}>{paymentloading ? <ActivityIndicator size="large" size={18} color="white" /> : "Submit"}</Text></TouchableOpacity>
-      </BoxContainer>
-    </ScrollableContainer>
-  );
+     Toast.show({type:'success',text1:data?.message})
+      router.back();
+    } else if (datares.event === "dismiss") {
+      Toast.show({type:'error',text1:"Payment Cancelled"}) 
+      router.back(); // or close modal
+    }
+     } catch (e) {
+       alert(e.message)
+     }
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ const htmlContent = `
+    <html>
+      <head><script src="https://checkout.razorpay.com/v1/checkout.js"></script></head>
+      <body>
+        <script>
+          var options = {
+            "key": "${key}",
+            "amount": ${amount * 100},
+            "currency": "${currency}",
+            "name": "Syro Plus Stock",
+            "order_id": "${id}",
+            "description": "Test Transaction",
+            "handler": function (response){
+              window.ReactNativeWebView.postMessage(JSON.stringify({event:"success",response}));
+            },
+            "modal": {
+              ondismiss: function () {
+                window.ReactNativeWebView.postMessage(JSON.stringify({
+                  event: "dismiss"
+                }));
+              }
+            },
+            "theme":{
+           "color":"#009999"
+            },
+          };
+          var rzp1 = new Razorpay(options);
+          rzp1.open();
+        </script>
+      </body>
+    </html>
+  `;
   
   
-  // return(
-  //   <View style={{flex:1,}}>
-  //   <WebView source={{html:`
-  //   <body onload="document.f1.submit()">
-  //   <form name="f1" method="POST" action="https://allupipay.in/RN/create">
-  //         <input type="hidden" value=${'00c253c8-47ab-45e1-ad96-64fb7ecaee06'}  name="api_token">
-  //         <input  type="hidden" value=${'98345387345'} name="order_id">
-  //         <input  type="hidden" value=${amount} name="amount"> 
-  //         <input  type="Mobile_no" value=${"6203452591"} name="amount"> 
-  //       </form>
-  //   </body>
-  //   `}} />
-  //   </View>
-  //   )
+  return(
+    <View style={{flex:1,}}>
+    <WebView 
+    originWhitelist={['*']}
+      source={{ html: htmlContent }}
+      onMessage={onMessage}
+    />
+    </View>
+    )
 }
 
 export default Payment

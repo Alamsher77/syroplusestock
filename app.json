@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "InvestFlipkart",
-    "slug": "InvestFlipkart",
+    "name": "SyroplusStock",
+    "slug": "SyroplusStock",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/flipcart.png",
-    "scheme": "investflipkart",
+    "icon": "./assets/images/02.jpg",
+    "scheme": "syroplusstock",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -18,9 +18,9 @@
     "android": {
       "versionCode": 1,
       "permissions": [],
-      "package": "invest.flipkart.app",
+      "package": "stock.syroplus.app",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/flipcart.png",
+        "foregroundImage": "./assets/images/04.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true
@@ -28,36 +28,25 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/03.jpg"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/flipcart.png",
-          "imageWidth": 200,
+          "image": "./assets/images/04.png",
+          "imageWidth": "100%",
           "resizeMode": "contain",
-          "backgroundColor": "#FFD700"
+          "backgroundColor": "#333"
         }
-      ]
+      ],
+     
     ],
     "experiments": {
       "typedRoutes": true
     },
     "jsEngine": "jsc",
-    "extra": {
-      "router": {},
-      "eas": {
-        "projectId": "98025ca3-644d-404b-b591-29372ffd89b2"
-      }
-    },
-    "owner": "invest_flipkart",
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/98025ca3-644d-404b-b591-29372ffd89b2"
-    }
+  
   }
 }

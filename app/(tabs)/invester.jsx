@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   button: {
-    backgroundColor: '#FFD600',
+    backgroundColor: Colors.mainColor,
     paddingVertical: 6,
     paddingHorizontal: 14,
     borderRadius: 20,
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#333',
+    color: '#fff',
   },
   amount: {
     marginTop: 20,
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   amountValue: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: '#FBC02D',
+    color: Colors.mainColor,
   },
   earningsContainer: {
     flexDirection: 'row',
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   earningValue: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#FBC02D',
+    color: Colors.mainColor,
   },
   earningLabel: {
     fontSize: 14,
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   },
   transactionhistory:{
     paddingHorizontal:12,
-    backgroundColor:'#FBC02D',
+    backgroundColor: Colors.mainColor,
     width:'48%',
     borderRadius:4,
     justifyContent:'center',

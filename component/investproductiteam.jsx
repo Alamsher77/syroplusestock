@@ -2,6 +2,7 @@ import { View, Text, Button, ScrollView, StyleSheet, TouchableOpacity } from 're
 import BoxContainer from './boxcontainer'
 import { ProgressBar } from 'react-native-paper';
 import { useRouter } from 'expo-router';
+import Colors from '../Colors/color'
 const Investproductiteam = ({item,sample})=>{
   const router = useRouter()
  const randomNumber = Math.floor(Math.random() * (100 - 10 + 1)) + 10; 
@@ -35,7 +36,7 @@ const Investproductiteam = ({item,sample})=>{
     
       </View>
         <View style={{marginTop: sample ? 1 : 6,position:'relative'}}>
-        <ProgressBar progress={randomNumber / 100} color="#4CAF50" style={{height: sample ? 2 : 6 ,borderRadius: 4}} />
+        <ProgressBar progress={randomNumber / 100} color={Colors.mainColor} style={{height: sample ? 2 : 6 ,borderRadius: 4}} />
         <Text style={[styles.progressText,{fontSize: sample ? 6 : 12 ,position: sample ? 'absolute' :'relative',top: sample ? -15 : 0}]}>{randomNumber}%</Text>
       </View>
      </TouchableOpacity>
@@ -48,12 +49,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 12,
+    color:Colors.mainColor
   },
   agent: {
-    color: '#000',
+    color: Colors.mainColor,
   },
   placeholderBox: {
-    backgroundColor: '#FFD700',
+    backgroundColor: Colors.mainColor,
     width: 80,
     height: 80,
     borderRadius: 4,
@@ -63,7 +65,7 @@ const styles = StyleSheet.create({
   },
   placeholderText: { 
     fontWeight: 'bold',
-    color: '#fff',
+    color:Colors.flipkart,
   },
   infoRow: {
     flexDirection: 'row',
@@ -72,20 +74,20 @@ const styles = StyleSheet.create({
     width:"83%"
   },
   label: {
-    color: '#888',
+    color: Colors.mainColor,
     fontSize: 14,
   },
   value: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#000',
+    color: Colors.mainColor,
   },
   progressText: {
     textAlign: 'right',
     marginTop: 4,
     fontSize: 12,
     fontWeight: 'bold',
-    color: '#4CAF50',
+    color: Colors.mainColor,
   },
 })
 

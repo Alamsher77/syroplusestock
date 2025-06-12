@@ -1,6 +1,7 @@
 
  const Colors = {
-  flipkart:'#FFD700'
+  flipkart:'#fff',
+  mainColor:'#009999'
 }
 
 export default Colors

@@ -1,6 +1,7 @@
 import { Animated, View,StyleSheet, TouchableOpacity, Platform,Dimensions } from 'react-native';
 import { useLinkBuilder, useTheme } from '@react-navigation/native';
 import {EvilIcons,FontAwesome6,FontAwesome5,Ionicons,MaterialCommunityIcons} from '@expo/vector-icons';
+import Colors from '../Colors/color'
 const {width} = Dimensions.get('window')
 function MyTabBar({ state, descriptors, navigation, position }) {
   const { colors } = useTheme(); 
@@ -43,7 +44,7 @@ function MyTabBar({ state, descriptors, navigation, position }) {
         // });
  
         let tabicon 
-        const iconcolor = isFocused ? '#333333' :'#003366'
+        const iconcolor = isFocused ? '#fff' :'#fff'
         const iconsize = isFocused ? 30 : 20
         switch (route.name) {
           case 'home':
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
     position:"absolute",
     flexDirection:'row',
     width: '86%',
-    backgroundColor:'#FFD700',
+    backgroundColor:Colors.mainColor,
     shadowWith:0,
     alignSelf:"center",  
     bottom:25,

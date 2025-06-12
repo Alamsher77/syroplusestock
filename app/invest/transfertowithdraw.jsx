@@ -4,6 +4,7 @@ import ScrollableContainer from '../../component/scrollableitems'
 import { AuthContext } from '../../context/AuthContext';
 import React,{useState,useEffect,useContext} from 'react';
 import BoxContainer from '../../component/boxcontainer' 
+import Colors from '../../Colors/color'
 import Currency from '../../currency'
 import Fetchapimethod from '../../configration/fetchapimethod'
 import Toast from 'react-native-toast-message'
@@ -33,16 +34,16 @@ const  TransferToWithdrawal = ()=> {
       <BoxContainer style={{marginTop:20}}>
        <View style={{marginLeft:30,}}>
         <Text style={{fontWeight:'bold',fontSize:14}}>Total Available Balance</Text>
-        <Text style={{color:'#22bB22',paddingTop:8,fontSize:25}}>{Currency(user?.total_withdrawal)}</Text>
+        <Text style={{color:Colors.mainColor,paddingTop:8,fontSize:25,fontWeight:"bold"}}>{Currency(user?.total_withdrawal)}</Text>
        </View>
        <View style={{flexDirection:'row',marginTop:12,justifyContent:'space-evenly'}}>
         <BoxContainer style={{}}>
          <Text style={{fontWeight:'bold'}}>Today Income</Text>
-         <Text style={{color:'#22bB22',paddingTop:8,fontSize:17}} >{Currency(user?.today_income)}</Text>
+         <Text style={{color:Colors.mainColor,paddingTop:8,fontSize:17,fontWeight:"bold"}} >{Currency(user?.today_income)}</Text>
         </BoxContainer>
          <BoxContainer style={{}}>
          <Text style={{fontWeight:'bold'}}>Total Income</Text>
-         <Text style={{color:'#22bB22',paddingTop:8,fontSize:17}} >{Currency(user?.total_income)}</Text>
+         <Text style={{color:Colors.mainColor,paddingTop:8,fontSize:17,fontWeight:"bold"}} >{Currency(user?.total_income)}</Text>
         </BoxContainer>
        </View>
       </BoxContainer>
@@ -55,7 +56,7 @@ const  TransferToWithdrawal = ()=> {
       </BoxContainer>
       
       <TouchableOpacity disabled={convertloading} onPress={converthandler}>
-       <Text style={{backgroundColor:'#FBC02D',marginTop:20,paddingVertical:8,color:'white',textAlign:'center',borderRadius:5,fontWeight:'bold'}}>{convertloading ? <ActivityIndicator size="large" size={18} color="white" /> : "Convert"}</Text>
+       <Text style={{backgroundColor:Colors.mainColor,marginTop:20,paddingVertical:8,color:'white',textAlign:'center',borderRadius:5,fontWeight:'bold'}}>{convertloading ? <ActivityIndicator size="large" size={18} color="white" /> : "Convert"}</Text>
       </TouchableOpacity>
     </ScrollableContainer>
   );

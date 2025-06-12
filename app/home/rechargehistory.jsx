@@ -24,6 +24,7 @@ const  RechargeHistory = ()=> {
   }
   
   useEffect(()=>{
+    
     fetchtransaction()
   },[])
   return (
@@ -44,16 +45,16 @@ const  RechargeHistory = ()=> {
        fetchtransactiondata?.map((item,index)=>{
          return (
           <BoxContainer key={index} style={{gap:4}}>
-           <Text style={{color:'black',fontWeight:'bold'}}>Name :
-           <Text style={{color:'gray',fontWeight:'',fontSize:12}}> {item?.name}</Text>
+           <Text style={{color:'black',fontWeight:'bold'}}>Order_id :
+           <Text style={{color:'gray',fontWeight:'',fontSize:12}}> {item?.razorpay_order_id}</Text>
            </Text>
-           <Text style={{color:'black',fontWeight:'bold'}}>UTR Number :
-           <Text style={{color:'gray',fontWeight:'',fontSize:12}}> {item?.utrnumber}</Text>
+           <Text style={{color:'black',fontWeight:'bold'}}>Payment_id :
+           <Text style={{color:'gray',fontWeight:'',fontSize:12}}> {item?.razorpay_payment_id}</Text>
            </Text>
            <Text style={{color:'black',fontWeight:'bold'}}>Recharge amount :
            <Text style={{color:'#22bB22',fontWeight:'',fontSize:12}}>  {Currency(item?.recharge_amount)}</Text>
            </Text> 
-           <Text style={{color:'black',fontWeight:'bold'}} >Payment Status  : <Text style={{color:item?.status == 'completed' ? '#22bB22': item?.status == 'Proccess' ? 'blue' : 'red' ,fontWeight:'bold',textTransform:'uppercase',fontSize:12}}>{item?.status}</Text></Text>
+           <Text style={{color:'black',fontWeight:'bold'}} >Payment Status  : <Text style={{color:  '#22bB22',fontWeight:'bold',textTransform:'uppercase',fontSize:12}}>{item?.status}</Text></Text>
            <View style={{flexDirection:'row',gap:'5',justifyContent:'flex-end',marginTop:12}}>
            <Text style={{color:'black',fontWeight:'bold'}}>Date :  
             <Text style={{fontSize:12,color:'gray'}}> {new Date(item?.createdAt).toLocaleDateString()}</Text>

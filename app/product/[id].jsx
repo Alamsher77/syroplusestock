@@ -8,6 +8,7 @@ import BoxContainer from '../../component/boxcontainer';
 import ScrollableContainer from '../../component/scrollableitems'
 import Currancy from '../../currency'
 import Fetchapimethod from '../../configration/fetchapimethod'
+import Colors from '../../Colors/color'
 import Toast from 'react-native-toast-message'
  
 export default function ProductDetail() {
@@ -60,10 +61,10 @@ export default function ProductDetail() {
         
       </BoxContainer>
       <BoxContainer style={{marginBottom:12}}>
-       <Text style={{color:'#FBC02D',marginBottom:12}}>Product Information </Text>
+       <Text style={{color:Colors.mainColor,marginBottom:12}}>Product Information </Text>
        <Text>{product?.description}</Text>
       </BoxContainer> 
-      <TouchableOpacity disabled={perchaselodding} onPress={purchaseProductHandler} style={{backgroundColor:'#FBC02D',paddingVertical:8,borderRadius:12,}}>
+      <TouchableOpacity disabled={perchaselodding} onPress={purchaseProductHandler} style={{backgroundColor:Colors.mainColor,paddingVertical:8,borderRadius:12,}}>
        <Text style={{color:'white',fontWeight:'bold',fontSize:13,alignSelf:'center'}}>{perchaselodding ?  <ActivityIndicator size="large" size={18} color="white" /> : "INVEST NOW"}</Text>
       </TouchableOpacity>
        
@@ -89,10 +90,10 @@ const styles = StyleSheet.create({
   description: { fontSize: 16,fontFamily: '', },
   earningValue: {
     fontWeight: 'bold',
-    color: '#FBC02D',
+    color: Colors.mainColor,
   }, 
    placeholderBox: {
-    backgroundColor: '#FFD700',
+    backgroundColor: Colors.mainColor,
     width: 80,
     height: 80,
     borderRadius: 4,

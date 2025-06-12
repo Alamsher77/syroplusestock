@@ -34,12 +34,9 @@ export default function Profile() {
     <ScrollableContainer style={{gap:3}}>
       <BoxContainer style={{alignItems:'center'}}>
        <Text style={{marginBottom:12,fontWeight:'bold',textTransform:'uppercase',letterSpacing:2,fontFamily:'Royal'}}>profile</Text>
-       <Image
-            source={require('../../assets/images/flipcart.png')} // Replace with your own logo 
-            style={{width:50,height:50, }}
-          />
-        <Text style={{fontWeight:'bold',color:Colors?.flipkart, textShadowColor: 'red',textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 3,}}>Invest To Flipkart</Text>
+      <View style={{width:100,height:50}}><Image resizeMode="contain" style={{width:'100%',height:'100%'}} source={require('../../assets/images/03.jpg')} /></View>
+        <Text style={{fontWeight:'bold',color:Colors?.flipkart, textShadowColor:Colors.mainColor,textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 3,}}>Invest In Syro Plus Stock</Text>
       <View style={styles.textcontainer}>
         <Text style={styles?.text}>Name :</Text>
         <Text style={{color:'gray'}}>{user?.name}</Text>
@@ -100,9 +97,9 @@ export default function Profile() {
 
 const OptionItem = ({ icon, text, onPress }) => (
   <TouchableOpacity onPress={onPress} style={styles.optionItem}>
-    <FontAwesome5 name={icon} size={20} color="green" />
+    <FontAwesome5 name={icon} size={20} color={Colors.mainColor}/>
     <Text style={styles.optionText}>{text}</Text>
-    <MaterialIcons name="navigate-next" size={24} color="gray" />
+    <MaterialIcons name="navigate-next" size={24} color="#999" />
   </TouchableOpacity>
 );
 
@@ -129,7 +126,7 @@ const styles = StyleSheet.create({
   optionText: { flex: 1, fontSize: 16, marginLeft: 10 },
    earningValue: {
     fontWeight: 'bold',
-    color: '#FBC02D',
+    color: Colors.mainColor,
   },
   coppycontainer:{
     position:'absolute',

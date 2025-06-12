@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
    paddingHorizontal: 12,
    paddingVertical:8,
     paddingBottom: 80,
+    backgroundColor:"#fff"
   }, 
 });
 export default ScrollableContainer

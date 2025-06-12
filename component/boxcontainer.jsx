@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView,StatusBar } from 'react-native';
-
+import Colors from '../Colors/color'
 const BoxContainer = ({children,style})=>{
   return (
      <View style={[styles.container,style]}>{children}</View>
@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
   container:{ 
     borderRadius:5,
     elevation:5,
-    shadowColor:'rgba(0,0,0,0.3)', 
-    backgroundColor:'#fff',
+    shadowColor:Colors.mainColor, 
+    backgroundColor:"#fff",
     padding:10,
   }
 })
