@@ -30,7 +30,9 @@ export default function App() {
   const [password, setPassword] = useState('');
   
 const { login,user,logout,loadUser,userfetchlodding } = useContext(AuthContext);
- 
+  
+console.log(user);
+
   if(userfetchlodding){
     return(
     <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:Colors.mainColor}}>

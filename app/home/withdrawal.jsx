@@ -1,5 +1,5 @@
  
-import { View, Text, Button,TouchableOpacity,TextInput } from 'react-native';
+import { View, Text, Button,TouchableOpacity,TextInput,StyleSheet,ActivityIndicator } from 'react-native';
 import { router } from 'expo-router';
 import React,{useState,useEffect,useContext} from 'react';
 import ScrollableContainer from '../../component/scrollableitems'
@@ -9,6 +9,7 @@ import Currency from '../../currency'
 import {MaterialCommunityIcons,Entypo,FontAwesome6} from '@expo/vector-icons';
 import Colors from '../../Colors/color'
 import Toast from 'react-native-toast-message';
+import Fetchapimethod from '../../configration/fetchapimethod' 
 const  WithdrawalToBank = ()=> {
   const {user,allbankdetails} = useContext(AuthContext);
   const [selectbankincresewith,setselectbankincresewith] = useState(false)
@@ -16,24 +17,30 @@ const  WithdrawalToBank = ()=> {
   
   const [amount,setamount] = useState(0)
   const validatefornumberoramount = !isNaN(amount) && Number(amount) >= 300;
- const withdrawalhandler = ()=>{
-    if(!validatefornumberoramount){
-     Toast.show({type:'error',text1:'Please Enter the '})
-      return false
-    }
-    if(!selectbank){
-     Toast.show({type:'error',text1:'Please select your bank'}) 
-      return false
-    }
-    Toast.show({type:'success',text1:'Withdrawal successFully'})
+  const [withdrawalhandlerloadding,setwithdrawalhandlerloading] = useState(true)
+ const withdrawalhandler = async()=>{ 
+    
+    // Toast.show({type:'success',text1:'Withdrawal successFully'})
     // if(amount > user?.withdrawal_wallet){
     //   alert('unsufficient balance')
     //   return false
     // }
     
-    
- }
-  
+     try {
+      setwithdrawalhandlerloading(true)
+      const data = await Fetchapimethod({url:'withdrawal_to_bank',method:'post',data:{amount,bankdetails:selectbank}})
+     setwithdrawalhandlerloading(false)
+    if(!data?.success){
+      Toast.show({type:'error',text1:data.message})
+      return false
+    } 
+      
+    Toast.show({type:'success',text1:data?.message }) 
+     } catch (error) {
+       setwithdrawalhandlerloading(false)
+      Toast.show({type:'error',text1:error?.message || 'Something went wrong'})
+     }
+  }
   return (
     <ScrollableContainer style={{gap:4}}>
       <Text style={{alignSelf:'center',fontWeight:'bold',letterSpacing:2,fontSize:16}}>Withdrawal</Text>
@@ -80,16 +87,26 @@ const  WithdrawalToBank = ()=> {
       </BoxContainer>
       
       <BoxContainer style={{gap:4}}>
-       <Text style={{color:Colors.mainColor,fontSize:14}}>Withdrawal Rules:</Text>
-       <Text style={{fontSize:10,color:'gray'}}>1. You can use your bank account to withdraw cash from Monday to Friday from 9 am to 6 pm!</Text>
-       <Text  style={{fontSize:10,color:'gray'}}>2. The minimum daily withdrawal amount in 300 rupees. and the maximum daily withdrawal amount in 40,000 rupees!</Text>
-       <Text  style={{fontSize:10,color:'gray'}}>3. Each withdrawal fee is 6%, including program development costs and tax deductions.</Text>
-       <Text  style={{fontSize:10,color:'gray'}}>4. The withdrawal will be credited within 2-72 hours.</Text>
+       <Text style={{color:Colors.mainColor,fontSize:20}}>Withdrawal Rules:</Text>
+       <Text style={styles.text}>1. You can use your bank account to withdraw cash from Monday to Friday from 9 am to 6 pm!</Text>
+       <Text  style={styles.text}>2. The minimum daily withdrawal amount in 300 rupees. and the maximum daily withdrawal amount in 40,000 rupees!</Text>
+       <Text  style={styles.text}>3. Each withdrawal fee is 6%, including program development costs and tax deductions.</Text>
+       <Text  style={styles.text}>4. The withdrawal will be credited within 2-72 hours.</Text>
        <Text></Text>
       </BoxContainer>
-      <TouchableOpacity disabled={!validatefornumberoramount} style={{opacity: validatefornumberoramount ? 1 : 0.4}} onPress={withdrawalhandler} ><Text style={{backgroundColor:Colors.mainColor,marginTop:20,paddingVertical:8,color:Colors.flipkart,textAlign:'center',borderRadius:5,fontWeight:'bold'}}>Withdraw</Text></TouchableOpacity>
+      <TouchableOpacity disabled={!validatefornumberoramount || withdrawalhandlerloadding} style={{opacity: validatefornumberoramount ? 1 : 0.4}} onPress={withdrawalhandler} ><Text style={{backgroundColor:Colors.mainColor,marginTop:20,paddingVertical:8,color:Colors.flipkart,textAlign:'center',borderRadius:5,fontWeight:'bold'}}>{withdrawalhandlerloadding ? <ActivityIndicator size="small" color='white' /> : 'Withdraw'}</Text></TouchableOpacity>
     </ScrollableContainer>
   );
 }
 
-export default WithdrawalToBank
+const styles = StyleSheet.create({
+  text: {
+    color: Colors.mainColor, 
+    fontSize: 14, 
+    marginVertical: 4, 
+    lineHeight: 20,
+    textAlign: 'justify',
+  }, 
+});
+
+export default WithdrawalToBank;
