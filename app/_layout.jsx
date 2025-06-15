@@ -1,4 +1,4 @@
-import { Stack } from 'expo-router';
+import {Stack } from 'expo-router';
 import { AuthProvider } from '../context/AuthContext';
  
 import Toast from 'react-native-toast-message';
@@ -20,19 +20,17 @@ import {
 import {
   PanGestureHandler,
   GestureHandlerRootView
-} from 'react-native-gesture-handler';
+} from 'react-native-gesture-handler'; 
+import Colors from '../Colors/color';
 const RootLayout = ()=> {
-
+ 
   return (
     <GestureHandlerRootView>
     <AuthProvider> 
-    
-        <View style={{ height: StatusBar.currentHeight || 44, backgroundColor: '#fff' }} />
-  
-  
-     <StatusBar barStyle="dark-content" backgroundColor="red" />
+    <View style={{ height: StatusBar.currentHeight || 44, backgroundColor: '#fff' }} /> 
+      <StatusBar barStyle="dark-content" backgroundColor={Colors.flipkart} />
     <Stack screenOptions={{headerShown:false}}>
-       <Stack.Screen name="index" options={{ title: 'Main' }} />
+      <Stack.Screen name="index" options={{ title: 'Main' }} />   
       <Stack.Screen name="signup" options={{ title: 'Signup' }} />
       <Stack.Screen name="(tabs)" options={{ title: 'tabs' }} />
       <Stack.Screen name="network_error" options={{ title: 'Network Error' }} />

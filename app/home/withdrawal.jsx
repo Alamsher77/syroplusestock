@@ -17,7 +17,7 @@ const  WithdrawalToBank = ()=> {
   
   const [amount,setamount] = useState(0)
   const validatefornumberoramount = !isNaN(amount) && Number(amount) >= 300;
-  const [withdrawalhandlerloadding,setwithdrawalhandlerloading] = useState(true)
+  const [withdrawalhandlerloadding,setwithdrawalhandlerloading] = useState(false)
  const withdrawalhandler = async()=>{ 
     
     // Toast.show({type:'success',text1:'Withdrawal successFully'})
@@ -68,7 +68,7 @@ const  WithdrawalToBank = ()=> {
        </TouchableOpacity>
         
       {
-      allbankdetails.length == 0 ?
+      allbankdetails?.length == 0 ?
       <TouchableOpacity onPress={()=> router.navigate('profile/mybankaccount')}><Text style={{marginTop:20, color:'white',alignSelf:'center',backgroundColor:'#999',fontWeight:'bold',padding:6,paddingHorizontal:12,borderRadius:5}}>Add Bank Account</Text></TouchableOpacity> :
         allbankdetails?.map((item,index)=>{
           return(
